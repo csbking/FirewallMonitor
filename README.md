@@ -1,5 +1,5 @@
 # FAIRWALL MONITOR – TERMUX & LINUX REAL-TIME FIREWALL 🛡️
-  # Developed by: Alex Hunter • CSB Security Team...
+  					 	# FACEBOOK ID : ALEX HUNTER
 
 ---
 
@@ -35,8 +35,10 @@ python3 fairwall.py
 
 ```
 # PASSOWAED 📲 [ দিয়ে ENTER ]
-## 👉 FIREWALL 
+! 👉 FIREWALL
 
 
-# DISCLAIMER [⚠️]
-COPYRIGHT OWNER BY ALEX HUNTER 🥱☠️
+
+# 💬 CSB TEAM
+> Developed by Alex Hunter,
+Cyber Sentinel Bangladesh (CSB) Security Research Team.
