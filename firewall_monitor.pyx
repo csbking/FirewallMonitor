@@ -1,17 +1,12 @@
 #!/data/data/com.termux/files/usr/bin/env python3
 
-import os
-import time
-import subprocess
-import random
-import signal
-import sys
+import os, time, subprocess, random, signal, sys
 
 # ---------------------------
 # HANDLE CTRL+C GRACEFULLY
 # ---------------------------
 def exit_gracefully(sig, frame):
-    print(f"\n\033[93m[BOLD]⚠ MONITOR STOPPED BY USER. EXITING...[/BOLD]{RESET}")
+    print(f"\n\033[93m[BOLD]⚠ MONITOR STOPPED BY USER. EXITING...\033[0m")
     sys.exit(0)
 
 signal.signal(signal.SIGINT, exit_gracefully)
@@ -34,17 +29,19 @@ PINK="\033[95m"; GREEN="\033[92m"; CYAN="\033[96m"
 YELLOW="\033[93m"; RED="\033[91m"; RESET="\033[0m"; BOLD="\033[1m"
 
 # ---------------------------
-# WAIT FOR FIREWALL COMMAND
+# WAIT FOR FIREWALL COMMAND (SUPER FILTER)
 # ---------------------------
-def wait_firewall_command():
-    while True:
-        print(f"{CYAN}{BOLD}TYPE 'FIREWALL' TO START THE MONITOR:{RESET}")
-        cmd = input("> ").strip().replace(" ", "").upper()
-        if cmd == "FIREWALL":
-            break
-        print(f"{RED}{BOLD}FIREWALL COMMAND NOT DETECTED. TRY AGAIN...{RESET}\n")
+while True:
+    print(f"{CYAN}{BOLD}TYPE 'FIREWALL' TO START THE MONITOR:{RESET}")
+    cmd = input("> ")
 
-wait_firewall_command()
+    # REMOVE ALL NON-LETTER CHARACTERS — FINAL FIX
+    cmd_clean = "".join(ch for ch in cmd if ch.isalpha()).upper()
+
+    if cmd_clean == "FIREWALL":
+        break
+
+    print(f"{RED}{BOLD}FIREWALL COMMAND NOT DETECTED. TRY AGAIN...{RESET}\n")
 
 force_fullscreen()
 os.system("clear")
@@ -91,7 +88,7 @@ def get_connections():
     try:
         result = subprocess.run(["netstat", "-tun"], capture_output=True, text=True, timeout=3)
         lines = result.stdout.splitlines()
-    except Exception:
+    except:
         return []
 
     clean = []
@@ -127,8 +124,6 @@ def detect_danger(line):
         else:
             return False, ""
 
-        f_port = f_port.strip()
-
         if f_port in danger_ports:
             return True, f"⚠ DANGER: SUSPICIOUS PORT DETECTED → {f_port}"
 
@@ -136,11 +131,10 @@ def detect_danger(line):
             if f_ip.startswith(pref):
                 return True, f"⚠ HIGH‑RISK MALICIOUS RANGE → {f_ip}"
 
-        # Check unknown public IPs
         if not (f_ip.startswith("10.") or f_ip.startswith("192.168.") or f_ip.startswith("172.")):
             return True, f"⚠ UNKNOWN PUBLIC IP → {f_ip}"
 
-    except Exception:
+    except:
         return False, ""
     return False, ""
 
