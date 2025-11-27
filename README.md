@@ -41,12 +41,13 @@ python3 fairwall.py
 
 
 # 💬 CSB TEAM
-> Developed by Alex Hunter,
-Cyber Sentinel Bangladesh (CSB) Security Research Team.
+- Developed by Alex Hunter,
+- Cyber Sentinel Bangladesh (CSB) Security Research Team.
 
 
 ## 🔥🛡️ CSB SECURITY — NETWORK DEFENSE SYSTEM 🛡️🔥
- CCCCCCCCCCCCC   SSSSSSSSSSSSSSS BBBBBBBBBBBBBBBBB   
+  ```
+CCCCCCCCCCCCC   SSSSSSSSSSSSSSS BBBBBBBBBBBBBBBBB   
      CCC::::::::::::C SS:::::::::::::::SB::::::::::::::::B  
    CC:::::::::::::::CS:::::SSSSSS::::::SB::::::BBBBBB:::::B 
   C:::::CCCCCCCC::::CS:::::S     SSSSSSSBB:::::B     B:::::B
