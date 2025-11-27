@@ -59,3 +59,24 @@ ______ _____ _____  ________          __     _      _
 # 💬 CSB TEAM
 - Developed by Alex Hunter,
 - Cyber Sentinel Bangladesh (CSB) Security Research Team.
+
+
+# 🛡️ SECURITY POLICY – FAIRWALL MONITOR
+
+```
+Purpose
+
+This document explains how to securely report security vulnerabilities in FairWall Monitor, a real-time firewall monitoring tool developed by Alex Hunter • CSB Security Team.
+
+The goal is to help users and contributors report issues safely, and to help maintainers quickly address security concerns.
+
+
+
+```
+# ⚠️ Guidelines
+
+- Do NOT attempt to exploit vulnerabilities in a way that affects other users.
+
+- Do NOT publicly disclose vulnerabilities until they are fixed.
+
+- Only report vulnerabilities in FairWall Monitor or its official releases.
