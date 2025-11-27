@@ -36,17 +36,9 @@ python3 firewall_monitor.pyx
 # -! 👉 FIREWALL 👈!-
 
 
-```
-```
-
-# 💬 CSB TEAM
-- Developed by Alex Hunter,
-- Cyber Sentinel Bangladesh (CSB) Security Research Team.
 
 
 
-```
-```
 
 ## 🔥🛡️ CSB SECURITY — NETWORK DEFENSE SYSTEM 🛡️🔥
   ```
@@ -60,3 +52,10 @@ ______ _____ _____  ________          __     _      _
       🛡️🔥 FAIRWALL MONITOR – REAL‑TIME FIREWALL 🔥🛡️
         ⚡ Unknown IP Detection | Encrypted Tunnel ⚡
         🚨 Foreign Traffic Spike Monitoring 🚨
+
+
+
+```
+# 💬 CSB TEAM
+- Developed by Alex Hunter,
+- Cyber Sentinel Bangladesh (CSB) Security Research Team.
