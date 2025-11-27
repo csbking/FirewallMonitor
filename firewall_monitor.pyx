@@ -23,9 +23,10 @@ YELLOW="\033[93m"; RED="\033[91m"; RESET="\033[0m"; BOLD="\033[1m"
 # WAIT FOR FIREWALL COMMAND
 # ---------------------------
 print(f"{CYAN}{BOLD}TYPE 'FIREWALL' TO START THE MONITOR:{RESET}")
-cmd = input("> ").strip().upper()
+cmd = input("> ")
 
-if cmd != "FIREWALL":
+# FIXED CONDITION
+if cmd.replace(" ", "").upper() != "FIREWALL":
     print(f"{RED}{BOLD}FIREWALL COMMAND NOT DETECTED. EXITING...{RESET}")
     exit()
 
