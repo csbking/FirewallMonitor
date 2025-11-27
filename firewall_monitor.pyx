@@ -1,6 +1,20 @@
 #!/data/data/com.termux/files/usr/bin/env python3
 
-import os, time, subprocess, random
+import os
+import time
+import subprocess
+import random
+import signal
+import sys
+
+# ---------------------------
+# HANDLE CTRL+C GRACEFULLY
+# ---------------------------
+def exit_gracefully(sig, frame):
+    print(f"\n\033[93m[BOLD]⚠ MONITOR STOPPED BY USER. EXITING...[/BOLD]{RESET}")
+    sys.exit(0)
+
+signal.signal(signal.SIGINT, exit_gracefully)
 
 # ---------------------------
 # FORCE FULL SCREEN
@@ -22,13 +36,15 @@ YELLOW="\033[93m"; RED="\033[91m"; RESET="\033[0m"; BOLD="\033[1m"
 # ---------------------------
 # WAIT FOR FIREWALL COMMAND
 # ---------------------------
-print(f"{CYAN}{BOLD}TYPE 'FIREWALL' TO START THE MONITOR:{RESET}")
-cmd = input("> ")
+def wait_firewall_command():
+    while True:
+        print(f"{CYAN}{BOLD}TYPE 'FIREWALL' TO START THE MONITOR:{RESET}")
+        cmd = input("> ").strip().replace(" ", "").upper()
+        if cmd == "FIREWALL":
+            break
+        print(f"{RED}{BOLD}FIREWALL COMMAND NOT DETECTED. TRY AGAIN...{RESET}\n")
 
-# FIXED CONDITION
-if cmd.replace(" ", "").upper() != "FIREWALL":
-    print(f"{RED}{BOLD}FIREWALL COMMAND NOT DETECTED. EXITING...{RESET}")
-    exit()
+wait_firewall_command()
 
 force_fullscreen()
 os.system("clear")
@@ -72,18 +88,22 @@ spinner = ["|", "/", "-", "\\"]
 # CLEAN CONNECTION FETCHER
 # ---------------------------
 def get_connections():
-    result = subprocess.run(["netstat", "-tun"], capture_output=True, text=True)
-    lines = result.stdout.splitlines()
+    try:
+        result = subprocess.run(["netstat", "-tun"], capture_output=True, text=True, timeout=3)
+        lines = result.stdout.splitlines()
+    except Exception:
+        return []
 
     clean = []
     for line in lines:
-        if len(line.strip()) < 5:
+        line = line.strip()
+        if len(line) < 5:
             continue
         if "127.0.0.1" in line:
             continue
-        if line.startswith("Proto"):
+        if line.lower().startswith("proto"):
             continue
-        if line.startswith("Active Internet"):
+        if line.lower().startswith("active internet"):
             continue
         clean.append(line.upper())
     return clean
@@ -95,29 +115,33 @@ danger_ports = ["4444", "3389", "5900", "8080", "53"]
 danger_prefix = ["185.220.", "45.13.", "103.152."]
 
 def detect_danger(line):
-    parts = line.split()
-    if len(parts) < 5:
+    try:
+        parts = line.split()
+        if len(parts) < 5:
+            return False, ""
+
+        foreign = parts[4]
+
+        if ":" in foreign:
+            f_ip, f_port = foreign.rsplit(":", 1)
+        else:
+            return False, ""
+
+        f_port = f_port.strip()
+
+        if f_port in danger_ports:
+            return True, f"⚠ DANGER: SUSPICIOUS PORT DETECTED → {f_port}"
+
+        for pref in danger_prefix:
+            if f_ip.startswith(pref):
+                return True, f"⚠ HIGH‑RISK MALICIOUS RANGE → {f_ip}"
+
+        # Check unknown public IPs
+        if not (f_ip.startswith("10.") or f_ip.startswith("192.168.") or f_ip.startswith("172.")):
+            return True, f"⚠ UNKNOWN PUBLIC IP → {f_ip}"
+
+    except Exception:
         return False, ""
-
-    foreign = parts[4]
-
-    if ":" in foreign:
-        f_ip, f_port = foreign.rsplit(":", 1)
-    else:
-        return False, ""
-
-    f_port = f_port.strip()
-
-    if f_port in danger_ports:
-        return True, f"⚠ DANGER: SUSPICIOUS PORT DETECTED → {f_port}"
-
-    for pref in danger_prefix:
-        if f_ip.startswith(pref):
-            return True, f"⚠ HIGH‑RISK MALICIOUS RANGE → {f_ip}"
-
-    if not (f_ip.startswith("10.") or f_ip.startswith("192.168.") or f_ip.startswith("172.")):
-        return True, f"⚠ UNKNOWN PUBLIC IP → {f_ip}"
-
     return False, ""
 
 # ---------------------------
@@ -135,14 +159,13 @@ while True:
     hacking_screen()
 
     conns = get_connections()
-    if len(conns) > 0:
-        for c in conns:
-            danger, alert_msg = detect_danger(c)
-            if danger:
-                print(f"{RED}{BOLD}{alert_msg.upper()}{RESET}")
-            else:
-                print(f"{PINK}{BOLD}⚠ NEW TRAFFIC → {c}{RESET}")
+    for c in conns:
+        danger, alert_msg = detect_danger(c)
+        if danger:
+            print(f"{RED}{BOLD}{alert_msg.upper()}{RESET}")
+        else:
+            print(f"{PINK}{BOLD}⚠ NEW TRAFFIC → {c}{RESET}")
 
     for s in spinner:
         print(f"{CYAN}{BOLD}[{s}] REAL‑TIME MONITORING ACTIVE...{RESET}", end="\r")
-        time.sleep(0.10)
+        time.sleep(0.1)
