@@ -1,9 +1,4 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/USERNAME/FairWallMonitor/main/preview.jpg" alt="FairWall Monitor Preview" width="800">
-</p>
-
-<h1 align="center">🛡️ FAIRWALL MONITOR – TERMUX & LINUX REAL-TIME FIREWALL 🛡️</h1>
-<p align="center">
+# FAIRWALL MONITOR – TERMUX & LINUX REAL-TIME FIREWALL 🛡️</h1>
   <b>Developed by: Alex Hunter • CSB Security Team</b>
 </p>
 
@@ -28,19 +23,20 @@
 
 ---
 
-## 📸 Preview Screen
-<p align="center">
-  <img src="https://raw.githubusercontent.com/csbking/FairWallMonitor/main/preview.jpg" width="450">
-</p>
-
----
-
 ## 🛠 Installation (Termux)
-```bash
+```
 pkg update && pkg upgrade -y
 pkg install python git -y
 
-git clone https://github.com/USERNAME/FairWallMonitor.git
+git clone https://github.com/csbking/FairWallMonitor.git
 cd FairWallMonitor
 
 python3 fairwall.py
+
+```
+# PASSOWAED [ দিয়ে ENTER ]
+**☞ FIREWALL**
+
+
+# DISCLAIMER [⚠️]
+COPYRIGHT OWNER BY ALEX HUNTER 🥱☠️
