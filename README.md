@@ -1,6 +1,6 @@
 # FAIRWALL MONITOR – TERMUX & LINUX REAL-TIME FIREWALL 🛡️
-  					 FACEBOOK ID : ALEX HUNTER
-             TELEGRAM ID : @alexhuntercsb
+  					 FACEBOOK ID: ALEX HUNTER
+       			 TELEGRAM ID: @alexhuntercsb
 
 ---
 
@@ -26,43 +26,36 @@
 
 ## 🛠 Installation (Termux)
 ```
-pkg update && pkg upgrade -y
-pkg install python git -y
-
-git clone https://github.com/csbking/FairWallMonitor.git
-cd FairWallMonitor
-
-python3 fairwall.py
+git clone https://github.com/csbking/FirewallMonitor.git
+cd FirewallMonitor
+python3 firewall_monitor.pyx
 
 ```
+
 ## PASSOWAED 📲 [ ENTER ]→
 # -! 👉 FIREWALL 👈!-
 
 
+```
+```
 
 # 💬 CSB TEAM
 - Developed by Alex Hunter,
 - Cyber Sentinel Bangladesh (CSB) Security Research Team.
 
 
+
+```
+```
+
 ## 🔥🛡️ CSB SECURITY — NETWORK DEFENSE SYSTEM 🛡️🔥
   ```
-CCCCCCCCCCCCC   SSSSSSSSSSSSSSS BBBBBBBBBBBBBBBBB   
-     CCC::::::::::::C SS:::::::::::::::SB::::::::::::::::B  
-   CC:::::::::::::::CS:::::SSSSSS::::::SB::::::BBBBBB:::::B 
-  C:::::CCCCCCCC::::CS:::::S     SSSSSSSBB:::::B     B:::::B
- C:::::C       CCCCCCS:::::S              B::::B     B:::::B
-C:::::C              S:::::S              B::::B     B:::::B
-C:::::C               S::::SSSS           B::::BBBBBB:::::B 
-C:::::C                SS::::::SSSSS      B:::::::::::::BB  
-C:::::C                  SSS::::::::SS    B::::BBBBBB:::::B 
-C:::::C                     SSSSSS::::S   B::::B     B:::::B
-C:::::C                          S:::::S  B::::B     B:::::B
- C:::::C       CCCCCC            S:::::S  B::::B     B:::::B
-  C:::::CCCCCCCC::::CSSSSSSS     S:::::SBB:::::BBBBBB::::::B
-   CC:::::::::::::::CS::::::SSSSSS:::::SB:::::::::::::::::B 
-     CCC::::::::::::CS:::::::::::::::SS B::::::::::::::::B  
-        CCCCCCCCCCCCC SSSSSSSSSSSSSSS   BBBBBBBBBBBBBBBBB     
+______ _____ _____  ________          __     _      _      
+ |  ____|_   _|  __ \|  ____\ \        / /\   | |    | |     
+ | |__    | | | |__) | |__   \ \  /\  / /  \  | |    | |     
+ |  __|   | | |  _  /|  __|   \ \/  \/ / /\ \ | |    | |     
+ | |     _| |_| | \ \| |____   \  /\  / ____ \| |____| |____ 
+ |_|    |_____|_|  \_\______|   \/  \/_/    \_\______|______|
 
       🛡️🔥 FAIRWALL MONITOR – REAL‑TIME FIREWALL 🔥🛡️
         ⚡ Unknown IP Detection | Encrypted Tunnel ⚡
