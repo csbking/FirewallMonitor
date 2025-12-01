@@ -26,10 +26,9 @@
 
 ## 🛠 Installation (Termux)
 ```
-git clone https://github.com/csbking/FirewallMonitor.git
+gitgit clone https://github.com/csbking/FirewallMonitor.git
 cd FirewallMonitor
-python3 firewall_monitor.pyx
-
+python3 setup.py
 ```
 
 ## PASSOWAED 📲 [ ENTER ]→
